@@ -219,15 +219,15 @@ def pregunta_07():
     ]
 
     """
-    count ={}
+    cuenta ={}
     with open("data.csv") as f:
-        for l in f:
-            l = l.split()
-            if l[1] in count:
-                count[l[1]].append(l[0])
+        for line in f:
+            line = line.split()
+            if line[1] in cuenta:
+                cuenta[line[1]].append(line[0])
             else:
-                count[l[1]]=[l[0]]
-    return sorted(count.items())
+                cuenta[line[1]]=[line[0]]
+    return sorted(cuenta.items())
 
 
 def pregunta_08():
