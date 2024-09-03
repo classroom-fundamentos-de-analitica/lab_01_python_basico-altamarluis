@@ -219,15 +219,29 @@ def pregunta_07():
     ]
 
     """
-    cuenta ={}
-    with open("data.csv") as f:
-        for line in f:
-            line = line.split()
-            if line[1] in cuenta:
-                cuenta[line[1]].append(line[0])
-            else:
-                cuenta[line[1]]=[line[0]]
-    return sorted(cuenta.items())
+    letras_por_valor = {}
+
+    # Abrir el archivo en modo lectura
+    with open('data.csv', 'r') as file:
+        # Iterar sobre cada línea del archivo
+        for line in file:
+            # Dividir la línea en columnas usando el tabulador como delimitador
+            columns = line.strip().split('\t')
+            valor_columna_2 = int(columns[1])
+            letra_columna_1 = columns[0]
+
+            # Si el valor de la columna 2 no está en el diccionario, agregarlo con una lista vacía
+            if valor_columna_2 not in letras_por_valor:
+                letras_por_valor[valor_columna_2] = []
+
+            # Agregar la letra de la columna 1 a la lista asociada al valor de la columna 2
+            letras_por_valor[valor_columna_2].append(letra_columna_1)
+
+    # Convertir el diccionario a una lista de tuplas y ordenarla por el valor de la columna 2
+    lista_letras_por_valor = [(valor, letras) for valor, letras in letras_por_valor.items()]
+    lista_letras_por_valor.sort(key=lambda x: x[0])  # Ordenar por el valor de la columna 2
+
+    return lista_letras_por_valor
 
 
 def pregunta_08():
